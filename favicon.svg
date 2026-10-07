@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="NZ House Hunt">
+  <defs>
+    <linearGradient id="sky" x1="12" y1="4" x2="56" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2a8a92"/>
+      <stop offset="1" stop-color="#0e3d44"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#sky)"/>
+  <path fill="#12263a" opacity=".2" d="M0 44c9 3 16 1 24-1s15-1 24 2 16 2 16-1v20H0V44z"/>
+  <path fill="#1a5c63" d="M0 50c11 2 19-2 30-3s20 1 34 3v14H0V50z"/>
+  <path fill="#f6f3ee" d="M18 41 32 27l14 14v12H18V41z"/>
+  <path fill="#e8eef2" d="M22 53V42l10-10 10 10v11H22z"/>
+  <rect x="29" y="43.5" width="6" height="9.5" rx="1" fill="#0e3d44"/>
+  <rect x="24.5" y="36.5" width="4.5" height="4.5" rx=".7" fill="#1f6f78"/>
+  <rect x="35" y="36.5" width="4.5" height="4.5" rx=".7" fill="#1f6f78"/>
+  <path fill="#d9922f" d="M49 17a5.5 5.5 0 0 1 5.5 5.5c0 3.8-4.2 8.2-5.5 9.7-1.3-1.5-5.5-5.9-5.5-9.7A5.5 5.5 0 0 1 49 17z"/>
+  <circle cx="49" cy="22.5" r="2.1" fill="#0e3d44"/>
+</svg>

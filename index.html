@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en-NZ">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NZ House Hunt</title>
+    <meta
+      name="description"
+      content="Search houses for sale across New Zealand with area presets, price and bedroom filters."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#e8eef2" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1a22" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <link rel="canonical" href="https://jajera.github.io/nz-house-hunt/" />
+    <meta property="og:title" content="NZ House Hunt" />
+    <meta
+      property="og:description"
+      content="Search houses for sale across New Zealand with area presets, price and bedroom filters."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://jajera.github.io/nz-house-hunt/" />
+    <meta property="og:site_name" content="NZ House Hunt" />
+    <meta property="og:locale" content="en_NZ" />
+    <meta property="og:image" content="https://jajera.github.io/nz-house-hunt/og.jpg" />
+    <meta property="og:image:alt" content="NZ House Hunt — search houses for sale across Aotearoa" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="NZ House Hunt" />
+    <meta
+      name="twitter:description"
+      content="Search houses for sale across New Zealand with area presets, price and bedroom filters."
+    />
+    <meta name="twitter:image" content="https://jajera.github.io/nz-house-hunt/og.jpg" />
+    <meta name="twitter:image:alt" content="NZ House Hunt — search houses for sale across Aotearoa" />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t === "light" || t === "dark") {
+            document.documentElement.dataset.theme = t;
+          }
+        } catch (e) {
+          /* storage unavailable */
+        }
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <svg class="sprite" aria-hidden="true" focusable="false">
+      <defs>
+        <symbol id="i-auto" viewBox="0 0 24 24">
+          <path
+            d="M12 2v2M14.837 16.385a6 6 0 1 1-7.223-7.222c.624-.147.97.66.715 1.248a4 4 0 0 0 5.26 5.259c.589-.255 1.396.09 1.248.715M16 12a4 4 0 0 0-4-4M19 5l-1.256 1.256M20 12h2"
+          ></path>
+        </symbol>
+        <symbol id="i-light" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+          ></path>
+        </symbol>
+        <symbol id="i-dark" viewBox="0 0 24 24">
+          <path
+            d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"
+          ></path>
+        </symbol>
+      </defs>
+    </svg>
+
+    <div class="wrap topbar">
+      <div class="brand">NZ House Hunt</div>
+      <button
+        class="theme-toggle"
+        type="button"
+        id="theme-toggle"
+        aria-live="polite"
+        title="Change colour theme"
+        hidden
+      >
+        <svg class="icon theme-icon theme-icon-auto" aria-hidden="true" focusable="false">
+          <use href="#i-auto"></use>
+        </svg>
+        <svg class="icon theme-icon theme-icon-light" aria-hidden="true" focusable="false">
+          <use href="#i-light"></use>
+        </svg>
+        <svg class="icon theme-icon theme-icon-dark" aria-hidden="true" focusable="false">
+          <use href="#i-dark"></use>
+        </svg>
+        <span class="visually-hidden" id="theme-label">Colour theme: system</span>
+      </button>
+    </div>
+
+    <header class="hero wrap">
+      <p class="kicker">NZ listings</p>
+      <h1>Find houses for sale</h1>
+      <p class="lede">
+        Search every residential sale listing in New Zealand, refreshed every few
+        hours from realestate.co.nz. Use presets like South Wellington, or drill
+        into any region, district, and suburb.
+      </p>
+      <div class="meta-bar">
+        <span class="chip" id="countChip"><strong>—</strong> matches</span>
+        <span class="chip" id="areaChip">Area <strong>—</strong></span>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="panel" aria-label="Search filters">
+        <div class="filters">
+          <label class="wide">
+            Area preset
+            <select id="preset"></select>
+          </label>
+          <label>
+            Region
+            <select id="region"></select>
+          </label>
+          <label>
+            District
+            <select id="district"></select>
+          </label>
+          <label>
+            Suburb
+            <select id="suburb"></select>
+          </label>
+          <label>
+            Property type
+            <select id="propertyType"></select>
+          </label>
+          <label>
+            Min price
+            <input id="priceMin" type="number" min="0" step="10000" placeholder="Any" />
+          </label>
+          <label>
+            Max price
+            <input id="priceMax" type="number" min="0" step="10000" placeholder="Any" />
+          </label>
+          <label>
+            Min bedrooms
+            <select id="bedsMin"></select>
+          </label>
+          <label>
+            Min bathrooms
+            <select id="bathsMin"></select>
+          </label>
+          <label class="wide">
+            Keyword
+            <input
+              id="keyword"
+              type="search"
+              placeholder="Street, feature, suburb name…"
+              autocomplete="off"
+            />
+          </label>
+          <label class="check">
+            <input id="nearby" type="checkbox" />
+            Nearby suburbs
+          </label>
+        </div>
+
+        <button
+          class="more-toggle"
+          id="moreToggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="moreFilters"
+        >
+          More filters
+        </button>
+
+        <div class="more-filters" id="moreFilters" hidden>
+          <div class="filters">
+            <label>
+              Max bedrooms
+              <select id="bedsMax"></select>
+            </label>
+            <label>
+              Min garages
+              <select id="carparks"></select>
+            </label>
+            <label>
+              Min floor m²
+              <input id="floorMin" type="number" min="0" step="10" placeholder="Any" />
+            </label>
+            <label>
+              Min land m²
+              <input id="landMin" type="number" min="0" step="50" placeholder="Any" />
+            </label>
+            <label class="wide">
+              Pricing method
+              <select id="pricingMethod"></select>
+            </label>
+            <div class="checks span-4" role="group" aria-label="More listing filters">
+              <label class="check">
+                <input id="openHome" type="checkbox" />
+                Open home
+              </label>
+              <label class="check">
+                <input id="newBuild" type="checkbox" />
+                New construction
+              </label>
+              <label class="check">
+                <input id="mortgagee" type="checkbox" />
+                Mortgagee sale
+              </label>
+              <label class="check">
+                <input id="coastal" type="checkbox" />
+                Coastal / waterfront
+              </label>
+              <label class="check">
+                <input id="pool" type="checkbox" />
+                Swimming pool
+              </label>
+              <label class="check">
+                <input id="floorplan" type="checkbox" />
+                Floor plan
+              </label>
+              <label class="check">
+                <input id="hasAddress" type="checkbox" />
+                Published address
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <p class="hint" id="presetHint"></p>
+        <div class="actions">
+          <button class="btn-primary" id="searchBtn" type="button">Search</button>
+          <button class="btn-ghost" id="resetBtn" type="button">
+            Reset to South Wellington defaults
+          </button>
+        </div>
+      </section>
+
+      <p class="status" id="status">Starting…</p>
+      <section class="grid" id="grid" aria-live="polite"></section>
+      <nav class="pager" id="pager" hidden>
+        <button class="btn-ghost" id="prevPage" type="button">Previous</button>
+        <span id="pageLabel">Page 1</span>
+        <button class="btn-ghost" id="nextPage" type="button">Next</button>
+      </nav>
+    </main>
+
+    <footer class="wrap footer">
+      Data from the public
+      <a href="https://www.realestate.co.nz/">realestate.co.nz</a>
+      search API, refreshed every few hours. Not affiliated.
+    </footer>
+
+    <script src="./js/app.js" type="module"></script>
+  </body>
+</html>
