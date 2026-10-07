@@ -27,7 +27,7 @@ jobs:
         run: python3 scripts/build_data.py --out _site/data
 
       - name: Assemble site
-        run: cp -r index.html favicon.svg apple-touch-icon.png og.jpg css js _site/
+        run: cp -r index.html favicon.svg apple-touch-icon.png og.jpg robots.txt css js _site/
 
       - name: Setup Pages
         uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d #v6.0.0
